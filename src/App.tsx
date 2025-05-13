@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import styled from 'styled-components';
+import Navbar from './components/Navbar';
+import GameList from './pages/GameList';
+import GamePlay from './pages/GamePlay';
 
-function App() {
+const AppContainer = styled.div`
+  min-height: 100vh;
+  background-color: white;
+`;
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <AppContainer>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<GameList />} />
+          <Route path="/class/:classNumber" element={<GameList />} />
+          <Route path="/class/:classNumber/:category" element={<GameList />} />
+          <Route path="/awards" element={<GameList />} />
+          <Route path="/play/:gameId" element={<GamePlay />} />
+        </Routes>
+      </AppContainer>
+    </Router>
   );
-}
+};
 
 export default App;
