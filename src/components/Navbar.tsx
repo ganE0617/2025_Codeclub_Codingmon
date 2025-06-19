@@ -66,15 +66,21 @@ const DropdownMenu = styled.div`
   }
 `;
 
-const DropdownItem = styled.a`
-  display: block;
+const DropdownItem = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0.8rem 1.5rem;
   color: #B7B7B7;
-  text-decoration: none;
+  background: none;
+  border: none;
   transition: all 0.2s;
   font-size: 1.1rem;
   font-weight: normal;
   font-family: 'Cafe24Ssurround', sans-serif;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
 
   &:hover {
     background-color: #f5f5f5;
@@ -100,6 +106,13 @@ const Navbar: React.FC = () => {
     navigate(path);
   };
 
+  const categories = [
+    { key: '레이싱', label: '레이싱 게임' },
+    { key: '컨트롤', label: '컨트롤 게임' },
+    { key: '리액션', label: '리액션 게임' },
+    { key: '자유', label: '자유 게임' }
+  ];
+
   return (
     <Nav isScrolled={isScrolled}>
       <NavContainer>
@@ -112,19 +125,21 @@ const Navbar: React.FC = () => {
           <MenuButton onClick={() => handleNavigate('/class/6-4')}>
             6-4반
             <DropdownMenu>
-              <DropdownItem onClick={() => handleNavigate('/class/6-4/racing')}>레이싱 게임</DropdownItem>
-              <DropdownItem onClick={() => handleNavigate('/class/6-4/breakout')}>브레이크아웃 게임</DropdownItem>
-              <DropdownItem onClick={() => handleNavigate('/class/6-4/reaction')}>반응 속도 게임</DropdownItem>
-              <DropdownItem onClick={() => handleNavigate('/class/6-4/free')}>자유 게임</DropdownItem>
+              {categories.map(cat => (
+                <DropdownItem key={cat.key} onClick={e => { e.stopPropagation(); handleNavigate(`/class/6-4/${cat.key}`); }}>
+                  <span>{cat.label}</span>
+                </DropdownItem>
+              ))}
             </DropdownMenu>
           </MenuButton>
           <MenuButton onClick={() => handleNavigate('/class/6-5')}>
             6-5반
             <DropdownMenu>
-              <DropdownItem onClick={() => handleNavigate('/class/6-5/racing')}>레이싱 게임</DropdownItem>
-              <DropdownItem onClick={() => handleNavigate('/class/6-5/breakout')}>브레이크아웃 게임</DropdownItem>
-              <DropdownItem onClick={() => handleNavigate('/class/6-5/reaction')}>반응 속도 게임</DropdownItem>
-              <DropdownItem onClick={() => handleNavigate('/class/6-5/free')}>자유 게임</DropdownItem>
+              {categories.map(cat => (
+                <DropdownItem key={cat.key} onClick={e => { e.stopPropagation(); handleNavigate(`/class/6-5/${cat.key}`); }}>
+                  <span>{cat.label}</span>
+                </DropdownItem>
+              ))}
             </DropdownMenu>
           </MenuButton>
           <MenuButton onClick={() => handleNavigate('/awards')}>수상작</MenuButton>

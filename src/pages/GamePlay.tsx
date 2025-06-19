@@ -17,18 +17,18 @@ const GameContainer = styled.div`
 `;
 
 const BackButton = styled.button`
-  background-color: #ff6b8b;
+  background-color: #FF5C5C;
   color: white;
   border: none;
   padding: 0.8rem 1.5rem;
   border-radius: 25px;
-  font-size: 1rem;
+  font-size: 1.5rem;
   cursor: pointer;
   margin-bottom: 1rem;
   transition: background-color 0.2s;
   
   &:hover {
-    background-color: #ff4d6d;
+    background-color: #FF5C5C;
   }
 `;
 
@@ -50,7 +50,7 @@ const GameImage = styled.img`
 `;
 
 const GameTitle = styled.h2`
-  color: #ff6b8b;
+  color: #4B4B4B;
   margin-bottom: 1rem;
   font-family: 'Cafe24Ssurround', sans-serif;
 `;
@@ -63,7 +63,7 @@ const GameDescription = styled.p`
 
 const GameLink = styled.a`
   display: inline-block;
-  background-color: #ff6b8b;
+  background-color: #FF5C5C;
   color: white;
   text-decoration: none;
   padding: 0.8rem 1.5rem;
@@ -72,7 +72,7 @@ const GameLink = styled.a`
   transition: background-color 0.2s;
   
   &:hover {
-    background-color: #ff4d6d;
+    background-color: #FF5C5C;
   }
 `;
 

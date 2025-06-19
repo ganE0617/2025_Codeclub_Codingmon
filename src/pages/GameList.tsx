@@ -8,6 +8,42 @@ import game1Image from '../images/game1.png';
 import game2Image from '../images/game2.png';
 import game3Image from '../images/game3.png';
 import game4Image from '../images/game4.png';
+import game5Image from '../images/game5.png';
+import game6Image from '../images/game6.png';
+import game7Image from '../images/game7.png';
+import game8Image from '../images/game8.png';
+import game9Image from '../images/game9.png';
+import game10Image from '../images/game10.png';
+import game11Image from '../images/game11.png';
+import game12Image from '../images/game12.png';
+import game13Image from '../images/game13.png';
+import game14Image from '../images/game14.png';
+import game15Image from '../images/game15.png';
+import game16Image from '../images/game16.png';
+import game17Image from '../images/game17.png';
+import game18Image from '../images/game18.png';
+import game19Image from '../images/game19.png';
+import dummyImage from '../images/dummy.png';
+import game20Image from '../images/game20.png';
+import game21Image from '../images/game21.png';
+import game22Image from '../images/game22.png';
+import game23Image from '../images/game23.png';
+import game24Image from '../images/game24.png';
+import game25Image from '../images/game25.png';
+import game26Image from '../images/game26.png';
+import game27Image from '../images/game27.png';
+import game28Image from '../images/game28.png';
+import game29Image from '../images/game29.png';
+import game30Image from '../images/game30.png';
+import game31Image from '../images/game31.png';
+import game32Image from '../images/game32.png';
+import game33Image from '../images/game33.png';
+import game34Image from '../images/game34.png';
+import game35Image from '../images/game35.png';
+import game36Image from '../images/game36.png';
+import game37Image from '../images/game37.png';
+import game38Image from '../images/game38.png';
+import game39Image from '../images/game39.png';
 
 const Container = styled.div`
   padding: 2rem;
@@ -133,10 +169,11 @@ const ShowMoreButton = styled.button`
 `;
 
 const categoryLabels = {
-  racing: '레이싱 게임',
-  breakout: '브레이크아웃 게임',
-  reaction: '반응 속도 게임',
-  free: '자유 게임'
+  '레이싱': '레이싱 게임',
+  '컨트롤': '컨트롤 게임',
+  '리액션': '리액션 게임',
+  '슬롯': '슬롯 게임',
+  '자유': '자유 게임'
 };
 
 const gamesWithImages = games.map(game => ({
@@ -144,7 +181,23 @@ const gamesWithImages = games.map(game => ({
   image: game.id === '1' ? game1Image :
          game.id === '2' ? game2Image :
          game.id === '3' ? game3Image :
-         game.id === '4' ? game4Image : game1Image
+         game.id === '4' ? game4Image :
+         game.id === '5' ? game5Image :
+         game.id === '6' ? game6Image :
+         game.id === '7' ? game7Image :
+         game.id === '8' ? game8Image :
+         game.id === '9' ? game9Image :
+         game.id === '10' ? game10Image :
+         game.id === '11' ? game11Image :
+         game.id === '12' ? game12Image :
+         game.id === '13' ? game13Image :
+         game.id === '14' ? game14Image :
+         game.id === '15' ? game15Image :
+         game.id === '16' ? game16Image :
+         game.id === '17' ? game17Image :
+         game.id === '18' ? game18Image :
+         game.id === '19' ? game19Image :
+         (Number(game.id) >= 20 && Number(game.id) <= 39) ? dummyImage : game1Image
 }));
 
 const confettiAnimation = keyframes`
@@ -279,7 +332,7 @@ const GameList: React.FC = () => {
                 <GameTitle>{game.title}</GameTitle>
                 <GameDescription>{game.description}</GameDescription>
                 <TagContainer>
-                  <Tag type="developer">{game.developer} 개발자</Tag>
+                  <Tag type="developer">{game.author}</Tag>
                   <Tag type="category">{categoryLabels[game.category]}</Tag>
                   {game.awardType && <Tag type="award">{game.awardType}</Tag>}
                 </TagContainer>
@@ -303,7 +356,7 @@ const GameList: React.FC = () => {
 
     return (
       <Section>
-        <SectionTitle>{classNum}반 게임</SectionTitle>
+        <SectionTitle>{classNum}반</SectionTitle>
         {Object.entries(gamesByCategory).map(([cat, games]) => {
           const categoryKey = `${classNum}-${cat}`;
           const isExpanded = expandedCategories[categoryKey];
@@ -320,7 +373,7 @@ const GameList: React.FC = () => {
                       <GameTitle>{game.title}</GameTitle>
                       <GameDescription>{game.description}</GameDescription>
                       <TagContainer>
-                        <Tag type="developer">{game.developer} 개발자</Tag>
+                        <Tag type="developer">{game.author}</Tag>
                         <Tag type="category">{categoryLabels[game.category]}</Tag>
                         {game.awardType && <Tag type="award">{game.awardType}</Tag>}
                       </TagContainer>
@@ -359,6 +412,7 @@ const GameList: React.FC = () => {
 
   // 특정 클래스의 특정 카테고리 게임만 보여주기
   if (classNumber && category) {
+    // category가 한글로 들어오므로 그대로 비교
     const filteredGames = gamesWithImages.filter(
       game => game.classNumber === classNumber && game.category === category
     );
@@ -368,7 +422,7 @@ const GameList: React.FC = () => {
         {renderBackgroundShapes()}
         <ContentContainer>
           <Container>
-            <SectionTitle>{classNumber} {categoryLabels[category as keyof typeof categoryLabels]}</SectionTitle>
+            <SectionTitle>{classNumber} {categoryLabels[category as keyof typeof categoryLabels] || ''}</SectionTitle>
             <GameGrid>
               {filteredGames.map((game) => (
                 <GameCard key={game.id} onClick={() => handleGameClick(game.id)}>
@@ -377,7 +431,7 @@ const GameList: React.FC = () => {
                     <GameTitle>{game.title}</GameTitle>
                     <GameDescription>{game.description}</GameDescription>
                     <TagContainer>
-                      <Tag type="developer">{game.developer} 개발자</Tag>
+                      <Tag type="developer">{game.author}</Tag>
                       <Tag type="category">{categoryLabels[game.category]}</Tag>
                       {game.awardType && <Tag type="award">{game.awardType}</Tag>}
                     </TagContainer>
